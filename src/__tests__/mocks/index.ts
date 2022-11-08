@@ -5,6 +5,7 @@ import { ISessionRequest } from "../../interfaces/sessions";
 import { ITicketRequest } from "../../interfaces/tickets";
 import { IUserLogin, IUserRequest } from "../../interfaces/user";
 
+
 export const mockedAdmin: IUserRequest = {
   name: "Joana",
   email: "joana@mail.com",
