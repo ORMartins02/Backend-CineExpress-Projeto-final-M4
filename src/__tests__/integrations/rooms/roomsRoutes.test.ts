@@ -11,6 +11,7 @@ import {
   mockedRoom1,
   mockedUser,
   mockedRoomUpdate,
+  mockedUserLogin,
 } from "../../mocks";
 
 describe("Testing the Room routes", () => {
@@ -47,13 +48,11 @@ describe("Testing the Room routes", () => {
   });
 
   test("POST /rooms -> Should be able to create a new room", async () => {
-    const employeeLogin = await request(app)
-      .post("/login")
-      .send(mockedEmployeeLogin);
+    const adminLogin = await request(app).post("/login").send(mockedAdminLogin);
 
     const resultCreateRoom = await request(app)
       .post("/rooms")
-      .set("Authorization", `Bearer ${employeeLogin.body.token}`)
+      .set("Authorization", `Bearer ${adminLogin.body.token}`)
       .send(mockedRoom1);
 
     expect(resultCreateRoom.status).toBe(201);
@@ -71,6 +70,24 @@ describe("Testing the Room routes", () => {
 
     expect(resultCreateRoomList.body).toHaveProperty("room");
     expect(resultCreateRoomList.status).toBe(200);
+  });
+
+  test("GET /rooms/:id -  Must be able to list room by Id", async () => {
+    await request(app).post("/users").send(mockedUser);
+    const userLoginResponse = await request(app)
+      .post("/login")
+      .send(mockedUserLogin);
+
+    const room = await request(app)
+      .get("/rooms")
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    const resultRoomListedById = await request(app)
+      .get(`/rooms/${room.body[0].id}`)
+      .set("Authorization", `Bearer ${userLoginResponse.body.token}`);
+
+    expect(resultRoomListedById.status).toBe(200);
+    expect(resultRoomListedById.body).toHaveProperty("id");
   });
 
   test("PATCH /rooms -  should be able to update a room. ", async () => {
