@@ -88,12 +88,12 @@ export const mockedRoom1: IRoomRequest = {
 };
 
 export const mockedRoom2: IRoomRequest = {
-  capacity: 100,
+  capacity: 25,
   cinemaId: "1",
 };
 
 export const mockedRoom3: IRoomRequest = {
-  capacity: 100,
+  capacity: 102,
   cinemaId: "1",
 };
 
