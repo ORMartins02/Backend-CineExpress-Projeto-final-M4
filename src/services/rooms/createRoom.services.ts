@@ -22,7 +22,7 @@ const createRoomsService = async ({
   }
 
   if (rooms.length > 10) {
-    throw new AppError("Only 10 rooms can be created", 404);
+    throw new AppError("Only 10 rooms can be created");
   }
 
   if (!findCinema) {

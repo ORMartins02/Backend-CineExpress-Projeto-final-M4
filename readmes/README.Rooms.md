@@ -74,13 +74,12 @@ The Room object is defined as:
 
 ```json
 {
-  "id": "1",
-  "capacity:": 100,
-  "session": "1",
+  "capacity": 100,
   "cinema": {
     "id": 1,
-    "name": "Cine Express"
-  }
+    "name": "CineGusta"
+  },
+  "id": 1
 }
 ```
 
@@ -94,7 +93,7 @@ The Room object is defined as:
 
 ```json
 {
-  "message": "Missing authorization token"
+  "message": "Invalid token"
 }
 ```
 
@@ -129,14 +128,6 @@ The Room object is defined as:
 ```
 
 <br>
-
-#### **Status `404 - NOT FOUND`** - Cinema not exists
-
-```json
-{
-  "message": "Cinema not exists"
-}
-```
 
 #
 
@@ -178,15 +169,11 @@ The Room object is defined as:
 
 ```json
 [
-    {
-    "id": "1",
-    "capacity:": 100,
-    "session": "1",
-    "cinema": {
-      "id": 1,
-      "name": "Cine Express"
-    }
-  }
+   {
+		"id": 1,
+		"capacity": 100,
+		"sessions": []
+	}
 ...
 ]
 ```
@@ -201,7 +188,7 @@ The Room object is defined as:
 
 ```json
 {
-  "message": "Missing authorization token"
+  "message": "invalid token"
 }
 ```
 
@@ -244,13 +231,9 @@ The Room object is defined as:
 
 ```json
 {
-  "id": "1",
+  "id": 1,
   "capacity:": 100,
-  "session": "1",
-  "cinema": {
-    "id": 1,
-    "name": "Cine Express"
-  }
+  "sessions": []
 }
 ```
 
@@ -264,7 +247,7 @@ The Room object is defined as:
 
 ```json
 {
-  "message": "Missing authorization token"
+  "message": "invalid token"
 }
 ```
 
@@ -310,7 +293,7 @@ The Room object is defined as:
 
 ```json
 {
-  "capacity": 100
+  "capacity": 50
 }
 ```
 
@@ -324,15 +307,8 @@ The Room object is defined as:
 
 ```json
 {
-  "message": {
-    "id": "1",
-    "capacity:": 50,
-    "session": "1",
-    "cinema": {
-      "id": 1,
-      "name": "Cine Express"
-    }
-  }
+  "id": 1,
+  "capacity": 50
 }
 ```
 
@@ -346,17 +322,29 @@ The Room object is defined as:
 
 ```json
 {
-  "message": "Missing authorization token"
+  "message": "invalid token"
 }
 ```
 
 <br>
 
-#### **Status `403 - FORBIDDEN`** - "User is not an admin"
+#### **Status `403 - FORBIDDEN`** - "User is not employee"
 
 ```json
 {
-  "message": "User is not an adm"
+  "message": "User is not employee"
+}
+```
+
+<br>
+
+<br>
+
+#### **Status `403 - FORBIDDEN`** - "User is not adm"
+
+```json
+{
+  "message": "User is not adm"
 }
 ```
 
