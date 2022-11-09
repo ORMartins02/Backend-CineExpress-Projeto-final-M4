@@ -49,7 +49,7 @@ The Room object is defined as:
 ### **Request**:
 
 - POST /rooms
-- Host: https://cine-express-projeto-m4.herokuapp.com/rooms
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 
@@ -120,7 +120,7 @@ The Room object is defined as:
 
 <br>
 
-#### **Status `404 - BAD REQUEST`** - Maximum number of rooms created
+#### **Status `400 - BAD REQUEST`** - Maximum number of rooms created
 
 ```json
 {
@@ -130,7 +130,7 @@ The Room object is defined as:
 
 <br>
 
-#### **Status `404 - BAD REQUEST`** - Cinema not exists
+#### **Status `404 - NOT FOUND`** - Cinema not exists
 
 ```json
 {
@@ -153,7 +153,7 @@ The Room object is defined as:
 ### **Request**:
 
 - GET /rooms
-- Host: https://cine-express-projeto-m4.herokuapp.com/rooms/
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 - Empty body
@@ -178,32 +178,15 @@ The Room object is defined as:
 
 ```json
 [
-	{ "id": "1",
-  "capacity:": 100,
-  "session": "1",
-  "cinema": {
-    "id": 1,
-    "name": "Cine Express"
+    {
+    "id": "1",
+    "capacity:": 100,
+    "session": "1",
+    "cinema": {
+      "id": 1,
+      "name": "Cine Express"
+    }
   }
-	}
-  {
-  "id": "2",
-  "capacity:": 100,
-  "session": "1",
-  "cinema": {
-    "id": 1,
-    "name": "Cine Express"
-  }
-}
-{
-  "id": "3",
-  "capacity:": 100,
-  "session": "1",
-  "cinema": {
-    "id": 1,
-    "name": "Cine Express"
-  }
-}
 ...
 ]
 ```
@@ -235,7 +218,7 @@ The Room object is defined as:
 ### **Request**:
 
 - POST /users
-- Host: https://cine-express-projeto-m4.herokuapp.com/rooms/roomId
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 - Empty body
@@ -287,7 +270,7 @@ The Room object is defined as:
 
 <br>
 
-#### **Status `404 - BAD REQUEST`** - Invalid Id or room not exists
+#### **Status `404 - NOT FOUND`** - Invalid Id or room not exists
 
 ```json
 {
@@ -308,7 +291,7 @@ The Room object is defined as:
 ### **Request**:
 
 - PATCH /rooms/roomId
-- Host: https://cine-express-projeto-m4.herokuapp.com/rooms/roomId
+- Host: https://cine-express-projeto-m4.herokuapp.com
 - Authorization: Bearer Token
 - Content-type: application/json
 - User must be an Employee and admin
@@ -379,7 +362,7 @@ The Room object is defined as:
 
 <br>
 
-#### **Status `400 - BAD REQUEST`** - Room was not found
+#### **Status `404 - NOT FOUND`** - Room was not found
 
 ```json
 {
@@ -393,7 +376,7 @@ The Room object is defined as:
 
 ```json
 {
-  "message": "Room cannot have a capacity less than 30""
+  "message": "Room cannot have a capacity less than 30"
 }
 ```
 
@@ -403,6 +386,6 @@ The Room object is defined as:
 
 ```json
 {
-  "message": "Room cannot have a capacity above than 100""
+  "message": "Room cannot have a capacity above than 100"
 }
 ```

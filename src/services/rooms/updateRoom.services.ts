@@ -5,7 +5,7 @@ import { IRoomUpdate } from "../../interfaces/rooms";
 
 const updateRoomService = async (
   { capacity }: IRoomUpdate,
-  id: string
+  id: string,
 ): Promise<Rooms> => {
   const roomsRepository = AppDataSource.getRepository(Rooms);
 
@@ -14,7 +14,7 @@ const updateRoomService = async (
   });
 
   if (!room) {
-    throw new AppError("Room was not found");
+    throw new AppError("Room was not found", 404);
   }
 
   if (capacity < 30) {

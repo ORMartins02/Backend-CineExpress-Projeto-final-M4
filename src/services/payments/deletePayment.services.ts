@@ -5,7 +5,11 @@ import { AppError } from "../../errors/appError";
 const deletePaymentServices = async (id: string) => {
   const paymentRepository = AppDataSource.getRepository(PaymentInfo);
 
+<<<<<<< HEAD
   const idPayment = paymentRepository.findOneBy({
+=======
+  const idPayment = await paymentRepository.findOneBy({
+>>>>>>> bfa1f1afc02e3a28cc7e1d3d49db762363163907
     id: id,
   });
 
