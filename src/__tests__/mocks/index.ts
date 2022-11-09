@@ -122,6 +122,24 @@ export const mockedMovie3: IMoviesRequest = {
   cinema: "1",
 };
 
+export const mockedMovie4: IMoviesRequest = {
+  name: "Sexta-feira 13",
+  gender: "Terror",
+  avaliation: 5.0,
+  duration: "2:40",
+  onDisplay: true,
+  cinema: "1",
+};
+
+export const mockedMovie5: IMoviesRequest = {
+  name: "João e o pé de feijão",
+  gender: "Adult",
+  avaliation: 5.0,
+  duration: "2:40",
+  onDisplay: true,
+  cinema: "1",
+};
+
 export const mockedMovieExistent: IMoviesRequest = {
   name: "Poeira em Alto Mar",
   gender: "Adult",

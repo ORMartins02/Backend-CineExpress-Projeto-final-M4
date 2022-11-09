@@ -2,8 +2,12 @@ import request from "supertest";
 import app from "../../../app";
 import { DataSource } from "typeorm";
 import { AppDataSource } from "../../../data-source";
-import { IMovies } from "../../../interfaces/movies";
-import { mockedMovie1, mockedMovie2 } from "../../mocks/index";
+import {
+  mockedMovie1,
+  mockedMovie3,
+  mockedMovie4,
+  mockedMovie5,
+} from "../../mocks/index";
 import { mockedUser } from "../../mocks/index";
 import { mockedUserExistente } from "../../mocks/index";
 import { mockedUserLoginExistente } from "../../mocks/index";
@@ -11,9 +15,7 @@ import { mockedAdmin } from "../../mocks/index";
 import { mockedEmployee } from "../../mocks/index";
 import { mockedUserLogin } from "../../mocks/index";
 import { mockedAdminLogin } from "../../mocks/index";
-import { mockedEmployeeLogin } from "../../mocks/index";
 import { mockedCinema } from "../../mocks/index";
-import { response } from "express";
 
 describe("Testing movie routes", () => {
   let connection: DataSource;
@@ -147,7 +149,7 @@ describe("Testing movie routes", () => {
     const newMovie = await request(app)
       .post("/movies")
       .set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
-      .send(mockedMovie1);
+      .send(mockedMovie3);
 
     const movieTobeDeleted = await request(app)
       .get(`/movies/${newMovie.body.id}`)
@@ -165,13 +167,17 @@ describe("Testing movie routes", () => {
       .send(mockedAdmin);
 
     const newMovie = await request(app)
-      .post("/movies")
-      .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`)
-      .send(mockedMovie1);
+      .get("/movies")
+      .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`);
+
+    console.log(newMovie.body);
+    console.log(mockedMovie5);
 
     const movieTobeUpdated = await request(app)
       .patch(`/movies/${newMovie.body.id}`)
       .set("Authorization", `Bearer ${employeeLoginResponse.body.token}`);
+
+    console.log(movieTobeUpdated.body);
 
     expect(movieTobeUpdated.body).toHaveProperty("message");
     expect(movieTobeUpdated.status).toBe(200);
@@ -184,7 +190,7 @@ describe("Testing movie routes", () => {
     const newMovie = await request(app)
       .post("/movies")
       .set("Authorization", `Bearer ${adminLoginResponse.body.token}`)
-      .send(mockedMovie2);
+      .send(mockedMovie1);
 
     const userLoginResponse = await request(app)
       .post("/login")
